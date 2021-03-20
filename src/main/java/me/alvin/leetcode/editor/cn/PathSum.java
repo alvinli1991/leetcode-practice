@@ -95,6 +95,23 @@ public class PathSum {
             return hasPath(root, root.val, targetSum);
         }
 
+        /**
+         * 与下面算法不同的是，只需要将余数往下传递即可
+         *
+         * @param root
+         * @param targetSum
+         * @return
+         */
+        public boolean hasPathSum2(TreeNode root, int targetSum) {
+            if (root == null) {
+                return false;
+            }
+            if (null == root.left && null == root.right) {
+                return targetSum == root.val;
+            }
+            return hasPathSum2(root.left, targetSum - root.val) || hasPathSum2(root.right, targetSum - root.val);
+        }
+
 
         public boolean hasPath(TreeNode root, int acc, int targetSum) {
             if (root == null) {
@@ -109,6 +126,7 @@ public class PathSum {
             TreeNode left = root.left;
             int leftSum = calculateSum(acc, left);
 
+            //此处代码可以省略，交给下一层递归来判断
             if (null != left && isLeafNode(left)) {
                 if (targetSum == leftSum) {
                     return true;
@@ -120,6 +138,7 @@ public class PathSum {
             TreeNode right = root.right;
             int rightSum = calculateSum(acc, right);
 
+            //此处代码可以省略，交给下一层递归来判断
             if (null != right && isLeafNode(right)) {
                 if (targetSum == rightSum) {
                     return true;
@@ -132,7 +151,7 @@ public class PathSum {
         }
 
         boolean isLeafNode(TreeNode node) {
-            return null != node &&  null == node.left && null == node.right;
+            return null != node && null == node.left && null == node.right;
         }
 
         int calculateSum(int acc, TreeNode node) {
