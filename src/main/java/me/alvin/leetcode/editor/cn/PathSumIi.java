@@ -96,7 +96,8 @@ public class PathSumIi {
     class Solution {
         public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
             List<List<Integer>> result = new ArrayList<>();
-            hasPathSumCheck(root, targetSum, result, null);
+            List<Integer> path = new ArrayList<>();
+            hasPathSumCheck(root, targetSum, result, path);
             return result;
         }
 
@@ -104,28 +105,25 @@ public class PathSumIi {
             if (root == null) {
                 return;
             }
-            if (path == null) {
-                path = new ArrayList<>();
-            }
-
             path.add(root.val);
             if (null == root.left && null == root.right && targetSum == root.val) {
                 result.add(path);
             }
 
-            hasPathSumCheck(root.left, targetSum - root.val, result, new ArrayList<>(path));
-            hasPathSumCheck(root.right, targetSum - root.val, result, new ArrayList<>(path));
 
-//            if(isHasTwoChildren(root)){
-//                hasPathSumCheck(root.left, targetSum - root.val, result, new ArrayList<>(path));
-//                hasPathSumCheck(root.right, targetSum - root.val, result, new ArrayList<>(path));
-//            }else{
-//                if(null != root.left){
-//                    hasPathSumCheck(root.left, targetSum - root.val, result, path);
-//                }else if(null != root.right){
-//                    hasPathSumCheck(root.right, targetSum - root.val, result, path);
-//                }
-//            }
+            /**
+             * 只有当出现分叉的时候，才创建副本，减少不必要的内存消耗
+             */
+            if(isHasTwoChildren(root)){
+                hasPathSumCheck(root.left, targetSum - root.val, result, new ArrayList<>(path));
+                hasPathSumCheck(root.right, targetSum - root.val, result, new ArrayList<>(path));
+            }else{
+                if(null != root.left){
+                    hasPathSumCheck(root.left, targetSum - root.val, result, path);
+                }else if(null != root.right){
+                    hasPathSumCheck(root.right, targetSum - root.val, result, path);
+                }
+            }
         }
 
 
