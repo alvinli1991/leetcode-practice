@@ -63,10 +63,10 @@ public class PathSum {
         node4_r.right = node1;
         System.out.println(solution.hasPathSum(node5, 22));
 
-//        TreeNode node2 = new TreeNode(2);
-//        TreeNode node1 = new TreeNode(1);
-//        node1.right = node2;
-//        System.out.println(solution.hasPathSum(node1, 1));
+        TreeNode node2_2 = new TreeNode(2);
+        TreeNode node2_1 = new TreeNode(1);
+        node2_1.right = node2_2;
+        System.out.println(solution.hasPathSum(node2_1, 1));
 
 
     }
@@ -107,25 +107,22 @@ public class PathSum {
 
             //计算根节点的左叶节点的sum是否和targetSum一致
             TreeNode left = root.left;
-            int leftSum = acc;
-            if (null != left) {
-                leftSum = acc + left.val;
-                if (isLeafNode(left)) {
-                    if (targetSum == leftSum) {
-                        return true;
-                    }
+            int leftSum = calculateSum(acc, left);
+
+            if (null != left && isLeafNode(left)) {
+                if (targetSum == leftSum) {
+                    return true;
                 }
             }
 
+
             //计算根节点的右节点的sum是否和targetSum一致
             TreeNode right = root.right;
-            int rightSum = acc;
-            if (null != right) {
-                rightSum = acc + right.val;
-                if (isLeafNode(right)) {
-                    if (targetSum == rightSum) {
-                        return true;
-                    }
+            int rightSum = calculateSum(acc, right);
+
+            if (null != right && isLeafNode(right)) {
+                if (targetSum == rightSum) {
+                    return true;
                 }
             }
 
@@ -135,16 +132,16 @@ public class PathSum {
         }
 
         boolean isLeafNode(TreeNode node) {
-            return null == node.left && null == node.right;
+            return null != node &&  null == node.left && null == node.right;
         }
 
-//        int calculateSum(int acc, TreeNode node) {
-//            int sum = acc;
-//            if (null != node) {
-//                sum += node.val;
-//            }
-//            return sum;
-//        }
+        int calculateSum(int acc, TreeNode node) {
+            int sum = acc;
+            if (null != node) {
+                sum += node.val;
+            }
+            return sum;
+        }
 
     }
 
