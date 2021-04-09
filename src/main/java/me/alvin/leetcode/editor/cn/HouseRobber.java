@@ -42,14 +42,13 @@ public class HouseRobber {
         Solution solution = new HouseRobber().new Solution();
         System.out.println(solution.rob2(new int[]{1, 2, 3, 1}));
         solution = new HouseRobber().new Solution();
-        System.out.println(solution.rob(new int[]{1, 2, 3, 1}));
+        System.out.println(solution.rob(new int[]{2,7,9,3,1}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        int max = 0;
-
         public int rob(int[] nums) {
+            int max = 0;
             int[] dp = new int[nums.length];
             for (int i = 0; i < nums.length; i++) {
                 if (0 == i) {
@@ -73,6 +72,7 @@ public class HouseRobber {
         }
 
         public int rob2(int[] nums) {
+            int max = 0;
             Map<Integer, Integer> memo = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
                 if (0 == i) {
