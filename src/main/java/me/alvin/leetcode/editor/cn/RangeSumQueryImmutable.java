@@ -48,7 +48,7 @@ package me.alvin.leetcode.editor.cn;
 
 public class RangeSumQueryImmutable {
     public static void main(String[] args) {
-        NumArray solution = new RangeSumQueryImmutable().new NumArray(new int[]{-2, 0, 3, -5, 2, -1});
+        NumArray2 solution = new RangeSumQueryImmutable().new NumArray2(new int[]{-2, 0, 3, -5, 2, -1});
         System.out.println(solution.sumRange(0, 2));
         System.out.println(solution.sumRange(2, 5));
         System.out.println(solution.sumRange(0, 5));
@@ -74,11 +74,28 @@ public class RangeSumQueryImmutable {
         }
     }
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray obj = new NumArray(nums);
- * int param_1 = obj.sumRange(left,right);
- */
+    /**
+     * Your NumArray object will be instantiated and called as such:
+     * NumArray obj = new NumArray(nums);
+     * int param_1 = obj.sumRange(left,right);
+     */
 //leetcode submit region end(Prohibit modification and deletion)
+
+    class NumArray2 {
+        //前缀和
+        int[] preSum;
+
+        public NumArray2(int[] nums) {
+            //前缀和数组多一个占位元素0，统一操作以及消除index=0的特殊情况
+            preSum = new int[nums.length + 1];
+            for (int i = 0; i < nums.length; i++) {
+                preSum[i + 1] = preSum[i] + nums[i];
+            }
+        }
+
+        public int sumRange(int left, int right) {
+            return preSum[right + 1] - preSum[left];
+        }
+    }
 
 }
