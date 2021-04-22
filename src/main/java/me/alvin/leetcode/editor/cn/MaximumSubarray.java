@@ -71,7 +71,7 @@ public class MaximumSubarray {
         public int maxSubArray(int[] nums) {
             //以第n个结尾数组，最大连续和
             int[] dp = new int[nums.length];
-            //由于肯定会包含自己，初始化为自己
+            //只有一个时，选择自己
             dp[0] = nums[0];
             //由于一定会选择自己，那么最大连续子数组要不就是自己，要不就是前一个加上自己
             for (int i = 1; i < dp.length; i++) {
