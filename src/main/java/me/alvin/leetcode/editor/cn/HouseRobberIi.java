@@ -81,7 +81,7 @@ public class HouseRobberIi {
                      * max(0) = nums[0]
                      * max(1) = max{nums[0],nums[1]}
                      * max(n):
-                     *     nums[n] + max(n-1) 选n时
+                     *     nums[n] + max(n-2) 选n时
                      *     max(n-1) 不选n
                      */
                     max = Math.max(max, Math.max(dp[i - 1], nums[i] + dp[i - 2]));
