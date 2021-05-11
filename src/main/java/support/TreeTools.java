@@ -11,11 +11,8 @@ public class TreeTools {
     public static TreeNode buildTree(Integer[] nodes, TreeNode root, int i) {
         if (i < nodes.length) {
             if(nodes[i] != null){
-                TreeNode temp = new TreeNode(nodes[i]);
-                root = temp;
-
+                root = new TreeNode(nodes[i]);
                 root.left = buildTree(nodes, root.left, 2 * i + 1);
-
                 root.right = buildTree(nodes, root.right, 2 * (i + 1));
             }
         }
