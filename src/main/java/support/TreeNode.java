@@ -1,4 +1,4 @@
-package me.alvin.leetcode.editor.cn;
+package support;
 
 /**
  * @author Alvin Li

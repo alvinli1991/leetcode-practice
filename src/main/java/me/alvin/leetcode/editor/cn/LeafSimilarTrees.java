@@ -64,6 +64,7 @@
 
 package me.alvin.leetcode.editor.cn;
 
+import support.TreeNode;
 import support.TreeTools;
 
 public class LeafSimilarTrees {

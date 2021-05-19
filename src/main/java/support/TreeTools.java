@@ -1,8 +1,6 @@
 package support;
 
 
-import me.alvin.leetcode.editor.cn.TreeNode;
-
 /**
  * @author Alvin Li
  * @since 2021/5/10 11:10
