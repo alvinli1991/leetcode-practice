@@ -6,6 +6,9 @@ package support;
  */
 public class ListTools {
     public static ListNode buildLinkedList(int[] nums) {
+        if(nums.length == 0){
+            return null;
+        }
         ListNode first = new ListNode(nums[0]);
         ListNode last = first;
         for (int i = 1; i < nums.length; i++) {
