@@ -1,4 +1,4 @@
-package educative;
+package educative.sliding;
 
 /**
  * @author Alvin Li
