@@ -6,8 +6,8 @@ package educative.sliding;
  */
 public class MaxSumSubArrayOfSizeK {
     public static void main(String[] args) {
-        System.out.println(findMaxSumSubArray(3, new int[]{2, 1, 5, 1, 3, 2}));
-        System.out.println(findMaxSumSubArray(2, new int[]{2, 3, 4, 1, 5}));
+        System.out.println(findMaxSumSubArray2(3, new int[]{2, 1, 5, 1, 3, 2}));
+        System.out.println(findMaxSumSubArray2(2, new int[]{2, 3, 4, 1, 5}));
     }
 
     public static int findMaxSumSubArray(int k, int[] arr) {
@@ -38,7 +38,38 @@ public class MaxSumSubArrayOfSizeK {
         return max;
     }
 
+    /**
+     * 去掉windowsSize变量，使用right，left来计算
+     *
+     * @param k
+     * @param arr
+     * @return
+     */
     public static int findMaxSumSubArray2(int k, int[] arr) {
+        int left = 0;
+        int right = 0;
+        int max = 0;
+        int windowSum = 0;
+        while (right < arr.length) {
+            //移入窗口
+            windowSum += arr[right];
+            //窗口右移动
+            right++;
+
+
+            //收缩条件。此处是当窗口大小达到K时
+            if (right - left == k) {
+                max = Math.max(max, windowSum);
+                //移除窗口
+                windowSum -= arr[left];
+                //左移窗口
+                left++;
+            }
+        }
+        return max;
+    }
+
+    public static int findMaxSumSubArray3(int k, int[] arr) {
         int maxSum = 0;
         int windowSum = 0;
         int windowStart = 0;
