@@ -35,7 +35,7 @@ public class LongestRepeatingCharacterReplacement {
     public static void main(String[] args) {
         Solution solution = new LongestRepeatingCharacterReplacement().new Solution();
         System.out.println(solution.characterReplacement("ABAB",2));//4
-        System.out.println(solution.characterReplacement("AABABBA",1));
+        System.out.println(solution.characterReplacement("AABABBA",1));//4
 
     }
 
@@ -59,7 +59,9 @@ public class LongestRepeatingCharacterReplacement {
                 while (right - left > k + maxCount) {
                     char removeChar = s.charAt(left);
                     letterCount.computeIfPresent(removeChar, (key, v) -> --v);
+                    maxCount = Math.max(maxCount, letterCount.get(removeChar));
                     left++;
+
                 }
                 //此时right-left == k + maxCount
                 maxLength = Math.max(maxLength, right - left);
