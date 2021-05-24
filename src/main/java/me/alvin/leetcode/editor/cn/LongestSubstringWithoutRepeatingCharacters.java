@@ -70,24 +70,19 @@ public class LongestSubstringWithoutRepeatingCharacters {
             int result = 0;
             while (right < s.length()) {
                 Character c = s.charAt(right);
+                right++;
+                window.put(c, window.getOrDefault(c, 0) + 1);
 
-
-                Integer count = window.get(c);
-                if (null == count) {
-                    count = 1;
-                } else {
-                    count++;
-                }
-                window.put(c, count);
-
+                //如果存在重复的元素
                 while (window.get(c) > 1) {
                     Character c2 = s.charAt(left);
                     left++;
                     window.computeIfPresent(c2, (k, v) -> v - 1);
                 }
-                result = Math.max(result, right - left + 1);
+                //在收缩窗口完成后更新，此时不存在重复元素
+                result = Math.max(result, right - left);
 
-                right++;
+
             }
             return result;
         }

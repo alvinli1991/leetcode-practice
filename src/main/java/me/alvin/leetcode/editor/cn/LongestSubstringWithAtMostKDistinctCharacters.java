@@ -24,6 +24,11 @@ import java.util.Map;
 public class LongestSubstringWithAtMostKDistinctCharacters {
     public static void main(String[] args) {
         Solution solution = new LongestSubstringWithAtMostKDistinctCharacters().new Solution();
+        System.out.println(solution.lengthOfLongestSubstringKDistinct("eceba",2));
+        System.out.println(solution.lengthOfLongestSubstringKDistinct("aa",1));
+        System.out.println(solution.lengthOfLongestSubstringKDistinct("araaci", 2));
+        System.out.println(solution.lengthOfLongestSubstringKDistinct("araaci", 1));
+        System.out.println(solution.lengthOfLongestSubstringKDistinct("cbbebi", 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -36,13 +41,8 @@ public class LongestSubstringWithAtMostKDistinctCharacters {
 
             while (right < s.length()) {
                 Character addChar = s.charAt(right);
-                //下面两行代码可以用这行代替 window.put(addChar, window.getOrDefault(addChar, 0) + 1);
-                window.computeIfPresent(addChar, (key, v) -> ++v);
-                window.putIfAbsent(addChar, 1);
+                window.put(addChar, window.getOrDefault(addChar, 0) + 1);
                 right++;
-                if (window.size() <= k) {
-                    longest = Math.max(longest, right - left);
-                }
 
                 while (window.size() > k) {
                     Character removeChar = s.charAt(left);
@@ -51,12 +51,9 @@ public class LongestSubstringWithAtMostKDistinctCharacters {
                         window.remove(removeChar);
                     }
                     left++;
-
-                    if (window.size() <= k) {
-                        longest = Math.max(longest, right - left);
-                    }
-
                 }
+                //此处肯定满足条件 window.size() <= k
+                longest = Math.max(longest, right - left);
             }
             return longest;
         }
