@@ -73,6 +73,24 @@ public class BinaryTreePaths {
             buildTreePath(node.right, paths, path);
         }
 
+        public void findPath(TreeNode root,StringBuilder path,List<String>result){
+            if(null == root){
+                return;
+            }
+            if(path.length() == 0){
+                path.append(root.val);
+            }else{
+                path.append("->").append(root.val);
+            }
+
+            if(null == root.left && null == root.right){
+                result.add(path.toString());
+            }
+
+            findPath(root.left,new StringBuilder(path),result);
+            findPath(root.right,new StringBuilder(path),result);
+        }
+
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
