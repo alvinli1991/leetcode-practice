@@ -6,6 +6,13 @@ package support;
  * @since 2021/5/10 11:10
  */
 public class TreeTools {
+
+    public static TreeNode buildTree(Integer[] nodes) {
+        TreeNode root = null;
+        root = buildTree(nodes, root, 0);
+        return root;
+    }
+
     public static TreeNode buildTree(Integer[] nodes, int i) {
         TreeNode root = null;
         root = buildTree(nodes, root, 0);
