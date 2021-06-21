@@ -36,13 +36,13 @@ public class MergeSortTopBottom {
 
         //归并到a[lo..hi]
         for (int k = lo; k <=hi ; k++) {
-            if(i>mid){
+            if(i>mid){//左半边用尽(取右半边元素)
                 a[k] = aux[j++];
-            }else if(j>hi){
+            }else if(j>hi){//右半边用尽(取左半边元素)
                 a[k] = aux[i++];
-            }else if(SortTemplate.less(aux[j],aux[i])){
+            }else if(SortTemplate.less(aux[j],aux[i])){//右半边当前元素小于左半边当前元素，取右半边的元素
                 a[k] = aux[j++];
-            }else{
+            }else{//右半边当前元素大于等于左边的当前元素，取左半边的元素
                 a[k] = aux[i++];
             }
         }
